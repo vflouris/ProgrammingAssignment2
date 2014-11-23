@@ -1,11 +1,13 @@
 ## This File contains functions for finding and caching the inverse of a matrix
-## It is part of Assignment 2 for R programming course.
+## The list object that contains closures to handle caching and updating the matrix
+## and its inverse is henceforth refered as 'special matrix'.
+## This File is part of Assignment 2 for the R programming course.
 
 ## This function returns a 'special matrix' object with the ability to cache its inverse.
 ## IMPORTANT: do not try to use the returned object directly as a matrix, instead use
 ## its get method to get its data and set to set them. 
 makeCacheMatrix <- function(x = matrix()) {
-    cached_inverse <- NULL
+    cached_inverse <- NULL ## Cache initialized to NULL
     set <- function(m){
         x <<- m
         cached_inverse <<- NULL
@@ -22,10 +24,10 @@ makeCacheMatrix <- function(x = matrix()) {
 ## r matrix
 cacheSolve <- function(x, ...) {
     ci <- x$get_cached_inverse()
-    if(!is.null(ci)){
+    if(!is.null(ci)){ ## The inverse has already been computed
         return(ci)
     }
-    else{
+    else{ ## The inverse has not yet been computed
         m <- x$get()
         inverse <- solve(m)
         x$cache_inverse(inverse)
