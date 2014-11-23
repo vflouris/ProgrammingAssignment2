@@ -5,7 +5,7 @@
 ## IMPORTANT: do not try to use the returned object directly as a matrix, instead use
 ## its get method to get its data and set to set them. 
 makeCacheMatrix <- function(x = matrix()) {
-    cached_inverse <<- NULL
+    cached_inverse <- NULL
     set <- function(m){
         x <<- m
         cached_inverse <<- NULL
